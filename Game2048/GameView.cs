@@ -82,7 +82,7 @@ namespace Game2048
                     for (int column = 0; column < game.Size; column++)
                     {
                         var cell = tiles[row, column];
-                        var value = game.mainGrid[row, column];
+                        var value = game.MainGrid[row, column];
                         cell.Text = value.ToString();
                         if (ThemeTile.TileColors.ContainsKey(value))
                             cell.BackColor = ThemeTile.TileColors[value];

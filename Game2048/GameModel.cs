@@ -9,7 +9,7 @@ namespace Game2048
         public event Action GridUpdated;
         public event Action<string> GameOver;
         public readonly int Size;
-        public int[,] mainGrid;
+        public int[,] MainGrid { get; private set;}
 
         private int[,] _backupGrid;
         private Random _rndIndex;
@@ -39,7 +39,7 @@ namespace Game2048
         #region MainLogic
         public void InitBoard()
         {
-            mainGrid = new int[Size, Size];
+            MainGrid = new int[Size, Size];
 
             _rndIndex = new Random(DateTime.Now.Millisecond);
             _backupGrid = new int[Size, Size];
@@ -95,12 +95,12 @@ namespace Game2048
                 case 65:
                     for (int row = 0; row < Size; row++)
                         for (int column = 0; column < Size; column++)
-                            if (mainGrid[row, column] == 0)
+                            if (MainGrid[row, column] == 0)
                                 for (int k = column + 1; k < Size; k++)
-                                    if (mainGrid[row, k] != 0)
+                                    if (MainGrid[row, k] != 0)
                                     {
-                                        mainGrid[row, column] = mainGrid[row, k];
-                                        mainGrid[row, k] = 0;
+                                        MainGrid[row, column] = MainGrid[row, k];
+                                        MainGrid[row, k] = 0;
                                         break;
                                     }
                     break;
@@ -108,12 +108,12 @@ namespace Game2048
                 case 87:
                     for (int row = 0; row < Size; row++)
                         for (int column = 0; column < Size; column++)
-                            if (mainGrid[column, row] == 0)
+                            if (MainGrid[column, row] == 0)
                                 for (int k = column + 1; k < Size; k++)
-                                    if (mainGrid[k, row] != 0)
+                                    if (MainGrid[k, row] != 0)
                                     {
-                                        mainGrid[column, row] = mainGrid[k, row];
-                                        mainGrid[k, row] = 0;
+                                        MainGrid[column, row] = MainGrid[k, row];
+                                        MainGrid[k, row] = 0;
                                         break;
                                     }
 
@@ -122,12 +122,12 @@ namespace Game2048
                 case 68:
                     for (int row = 0; row < Size; row++)
                         for (int column = Size - 1; column >= 0; column--)
-                            if (mainGrid[row, column] == 0)
+                            if (MainGrid[row, column] == 0)
                                 for (int k = column - 1; k >= 0; k--)
-                                    if (mainGrid[row, k] != 0)
+                                    if (MainGrid[row, k] != 0)
                                     {
-                                        mainGrid[row, column] = mainGrid[row, k];
-                                        mainGrid[row, k] = 0;
+                                        MainGrid[row, column] = MainGrid[row, k];
+                                        MainGrid[row, k] = 0;
                                         break;
                                     }
 
@@ -136,12 +136,12 @@ namespace Game2048
                 case 83:
                     for (int row = 0; row < Size; row++)
                         for (int column = Size - 1; column >= 0; column--)
-                            if (mainGrid[column, row] == 0)
+                            if (MainGrid[column, row] == 0)
                                 for (int k = column - 1; k >= 0; k--)
-                                    if (mainGrid[k, row] != 0)
+                                    if (MainGrid[k, row] != 0)
                                     {
-                                        mainGrid[column, row] = mainGrid[k, row];
-                                        mainGrid[k, row] = 0;
+                                        MainGrid[column, row] = MainGrid[k, row];
+                                        MainGrid[k, row] = 0;
                                         break;
                                     }
                     break;
@@ -159,10 +159,10 @@ namespace Game2048
                 case 65:
                     for (int row = 0; row < Size; row++)
                         for (int column = 0; column < Size - 1; column++)
-                            if (mainGrid[row, column] == mainGrid[row, column + 1])
+                            if (MainGrid[row, column] == MainGrid[row, column + 1])
                             {
-                                mainGrid[row, column] += mainGrid[row, column + 1];
-                                mainGrid[row, column + 1] = 0;
+                                MainGrid[row, column] += MainGrid[row, column + 1];
+                                MainGrid[row, column + 1] = 0;
                                 mergePairScore = CalculateScore(row, column);
                                 _currentScore += mergePairScore;
                                 _turnScore += mergePairScore;
@@ -176,10 +176,10 @@ namespace Game2048
                 case 87:
                     for (int row = 0; row < Size; row++)
                         for (int column = 0; column < Size - 1; column++)
-                            if (mainGrid[column, row] == mainGrid[column + 1, row])
+                            if (MainGrid[column, row] == MainGrid[column + 1, row])
                             {
-                                mainGrid[column, row] += mainGrid[column + 1, row];
-                                mainGrid[column + 1, row] = 0;
+                                MainGrid[column, row] += MainGrid[column + 1, row];
+                                MainGrid[column + 1, row] = 0;
                                 mergePairScore = CalculateScore(column, row);
                                 _currentScore += mergePairScore;
                                 _turnScore += mergePairScore;
@@ -193,11 +193,11 @@ namespace Game2048
                 case 68:
                     for (int row = 0; row < Size; row++)
                         for (int column = Size - 1; column > 0; column--)
-                            if (mainGrid[row, column] == mainGrid[row, column - 1])
+                            if (MainGrid[row, column] == MainGrid[row, column - 1])
                             {
                                 Array.Clear(_moveLock, 0, 4);
-                                mainGrid[row, column] += mainGrid[row, column - 1];
-                                mainGrid[row, column - 1] = 0;
+                                MainGrid[row, column] += MainGrid[row, column - 1];
+                                MainGrid[row, column - 1] = 0;
                                 mergePairScore = CalculateScore(row, column);
                                 _currentScore += mergePairScore;
                                 _turnScore += mergePairScore;
@@ -211,11 +211,11 @@ namespace Game2048
                 case 83:
                     for (int row = 0; row < Size; row++)
                         for (int column = Size - 1; column > 0; column--)
-                            if (mainGrid[column, row] == mainGrid[column - 1, row])
+                            if (MainGrid[column, row] == MainGrid[column - 1, row])
                             {
                                 Array.Clear(_moveLock, 0, 4);
-                                mainGrid[column, row] += mainGrid[column - 1, row];
-                                mainGrid[column - 1, row] = 0;
+                                MainGrid[column, row] += MainGrid[column - 1, row];
+                                MainGrid[column - 1, row] = 0;
                                 mergePairScore = CalculateScore(column, row);
                                 _turnScore += mergePairScore;
                                 _currentScore += mergePairScore;
@@ -248,7 +248,7 @@ namespace Game2048
 
         private void CreateGridBackup()
         {
-            _backupGrid = (int[,])mainGrid.Clone();
+            _backupGrid = (int[,])MainGrid.Clone();
         }
 
         private void Undo()
@@ -257,7 +257,7 @@ namespace Game2048
                 return;
 
             _currentScore -= _turnScore;
-            mainGrid = (int[,])_backupGrid.Clone();
+            MainGrid = (int[,])_backupGrid.Clone();
 
             _canUndo = false;
         }
@@ -266,8 +266,8 @@ namespace Game2048
         {
             for (int row = 0; row < Size; row++)
                 for (int column = 0; column < Size; column++)
-                    if (mainGrid[row, column] > _maxTile)
-                        _maxTile = mainGrid[row, column];
+                    if (MainGrid[row, column] > _maxTile)
+                        _maxTile = MainGrid[row, column];
         }
 
         private bool GridFull()
@@ -275,7 +275,7 @@ namespace Game2048
             for (int row = 0; row < Size; row++)
                 for (int column = 0; column < Size; column++)
                 {
-                    if (mainGrid[row, column] == 0)
+                    if (MainGrid[row, column] == 0)
                         return false;
                 }
             return true;
@@ -285,7 +285,7 @@ namespace Game2048
         {
             for (int i = 0; i < Size; i++)
                 for (int j = 0; j < Size; j++)
-                    if (_backupGrid[i, j] != mainGrid[i, j])
+                    if (_backupGrid[i, j] != MainGrid[i, j])
                     {
                         _canUndo = true;
                         return true;
@@ -305,12 +305,12 @@ namespace Game2048
                 row = _rndIndex.Next(Size);
                 column = _rndIndex.Next(Size);
                 chanceSpawnBigBlock = _rndIndex.Next(10);
-            } while (mainGrid[row, column] != 0);
+            } while (MainGrid[row, column] != 0);
 
             if (chanceSpawnBigBlock < 2 && !initBlock)
-                mainGrid[row, column] = 4;
+                MainGrid[row, column] = 4;
             else
-                mainGrid[row, column] = 2;
+                MainGrid[row, column] = 2;
         }
         #endregion
 
@@ -346,7 +346,7 @@ namespace Game2048
         #region Helpers
         private int CalculateScore(int iRow, int iColumn)
         {
-            return (int)(Math.Log(mainGrid[iRow, iColumn], 2) - 1) * mainGrid[iRow, iColumn];
+            return (int)(Math.Log(MainGrid[iRow, iColumn], 2) - 1) * MainGrid[iRow, iColumn];
         }
 
         #endregion
