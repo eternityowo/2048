@@ -14,6 +14,7 @@ namespace Game2048
         private int[,] _backupGrid;
         private Random _rndIndex;
         private bool _canUndo = false;
+        private int _startWinTile;
         private int _maxTile;
         private int _winTile;
         private int _turnScore;
@@ -25,6 +26,13 @@ namespace Game2048
         public GameModel(int size)
         {
             Size = size;
+            _startWinTile = 2048;
+        }
+
+        public GameModel(int size, int startWinTile)
+        {
+            Size = size;
+            _startWinTile = startWinTile;
         }
         #endregion
 
@@ -39,7 +47,7 @@ namespace Game2048
 
             _currentScore = 0;
             _maxTile = 0;
-            _winTile = 64;
+            _winTile = _startWinTile;
             _turnScore = 0;
 
             SpawnTile(true);
