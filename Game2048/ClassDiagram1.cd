@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Game2048.GameModel">
+    <Position X="2.25" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>EBgAgIAIAEIghDIAAAAACAEAAAsAAAIAACMABAADBgA=</HashCode>
+      <FileName>GameModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.GameView">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAIAAABAAAAAAAAAAAAAAAAIAAAABAAAAAA=</HashCode>
+      <FileName>GameView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.Theme" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.ThemeForm">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.ThemeTile">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

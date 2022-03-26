@@ -94,12 +94,12 @@ namespace Game2048
                 case 37: // 65, 37 A, <
                 case 65:
                     for (int row = 0; row < Size; row++)
-                        for (int column = 0; column < Size; column++)
-                            if (MainGrid[row, column] == 0)
-                                for (int k = column + 1; k < Size; k++)
+                        for (int col = 0; col < Size; col++)
+                            if (MainGrid[row, col] == 0)
+                                for (int k = col + 1; k < Size; k++)
                                     if (MainGrid[row, k] != 0)
                                     {
-                                        MainGrid[row, column] = MainGrid[row, k];
+                                        MainGrid[row, col] = MainGrid[row, k];
                                         MainGrid[row, k] = 0;
                                         break;
                                     }
@@ -107,12 +107,12 @@ namespace Game2048
                 case 38: // 87, 38 w ^
                 case 87:
                     for (int row = 0; row < Size; row++)
-                        for (int column = 0; column < Size; column++)
-                            if (MainGrid[column, row] == 0)
-                                for (int k = column + 1; k < Size; k++)
+                        for (int col = 0; col < Size; col++)
+                            if (MainGrid[col, row] == 0)
+                                for (int k = col + 1; k < Size; k++)
                                     if (MainGrid[k, row] != 0)
                                     {
-                                        MainGrid[column, row] = MainGrid[k, row];
+                                        MainGrid[col, row] = MainGrid[k, row];
                                         MainGrid[k, row] = 0;
                                         break;
                                     }
@@ -121,12 +121,12 @@ namespace Game2048
                 case 39: // 68, 39 D >
                 case 68:
                     for (int row = 0; row < Size; row++)
-                        for (int column = Size - 1; column >= 0; column--)
-                            if (MainGrid[row, column] == 0)
-                                for (int k = column - 1; k >= 0; k--)
+                        for (int col = Size - 1; col >= 0; col--)
+                            if (MainGrid[row, col] == 0)
+                                for (int k = col - 1; k >= 0; k--)
                                     if (MainGrid[row, k] != 0)
                                     {
-                                        MainGrid[row, column] = MainGrid[row, k];
+                                        MainGrid[row, col] = MainGrid[row, k];
                                         MainGrid[row, k] = 0;
                                         break;
                                     }
@@ -135,17 +135,22 @@ namespace Game2048
                 case 40: // 83, 40 s !^
                 case 83:
                     for (int row = 0; row < Size; row++)
-                        for (int column = Size - 1; column >= 0; column--)
-                            if (MainGrid[column, row] == 0)
-                                for (int k = column - 1; k >= 0; k--)
+                        for (int col = Size - 1; col >= 0; col--)
+                            if (MainGrid[col, row] == 0)
+                                for (int k = col - 1; k >= 0; k--)
                                     if (MainGrid[k, row] != 0)
                                     {
-                                        MainGrid[column, row] = MainGrid[k, row];
+                                        MainGrid[col, row] = MainGrid[k, row];
                                         MainGrid[k, row] = 0;
                                         break;
                                     }
                     break;
             }
+        }
+
+        private void MoveHelper()
+        {
+
         }
 
         private void MergeTile(int keyCode)
